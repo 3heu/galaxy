@@ -7,40 +7,14 @@
 &emsp;&emsp;galaxy的运行程序目前是在docker中运行的，因此要部署galaxy需要在环境中部署先安装docker，只有安装了docker才能部署galaxy，至于docker的安装请参考相关的安装说明。
 
 **galaxy的运行环境与最低版本要求**
-
-| 环境要求   | 版本                                 |
-| ------ | ------------------------------------------ |
-| ubuntu | 18.04 |
-| docker | 18.09.7 |
+<img src="version.png" style="zoom:100%">
 
 **节点信息**
 galaxy多节点以10个节点为例，1个创世节点，7个生产节点和2个同步节点
-| 节点名称   |功能| 公钥                                 | 私钥 |
-| ------ |------- |------------------------------------------ | --------------- |
-| galaxy | 创世节点|GAL6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV | 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3 |
-| aprods1 | 生产节点|GAL6BZxjPemrsBRmfCDHf3afvJ4t7JDcNE3UXMudPsE4ezCMUJsWk | 5KexNTtncryJnof5SsKUH2nE9BYdCemsgiNkQQxJnjSG6HaUYVR |
-| aprods2 | 生产节点|GAL89Uj4bAVRDwP99VmjcL2Us6TebzsJRTfvbTNo4bmEioMwC2FTV | 5JbFfhtjUkL1RsZsW1MXxzG21pYSJwVQR6UFbvJAEtjwtGtgiAV |
-| aprods3 | 生产节点|GAL7Dg55w6aMc1drsQzGWyKz6mfAgQ744nad8cY8cZ3NEGXk97XVG | 5JTF8EmWDVKd7cDfJxny7e154UmjwkL91RnMdson9ZqoFBX4CsC |
-| aprods4 | 生产节点|GAL6i58nZEJAwhVHvNKLey5UJi8QYmvdtE6CSKyxSCAmcrw3BdQrX | 5KkTDCWodRGJzKRPpJuAnbUjC8gMeFfwwfzA6hXUA3qxwEiNnG6 |
-| aprods5 | 生产节点|GAL84BLRbGbFahNJEpnnJHYCoW9QPbQEk2iHsHGGS6qcVUq9HhutG | 5KAVVPzPZnbAx8dHz6UWVPFDVFtU1P5ncUzwHGQFuTxnEbdHJL4 |
-| sprods1 | 生产节点|GAL6YbMDQkoVv6nPEQ4hLiVT9PT2XYKRrkCLq6g9rxhdwbm9D9swp | 5KaZgdzBV4STUWkRzWsAFAFDuXQvBCPW2bkGxj4bkx5cd2uEbJw |
-| sprods2 | 生产节点|GAL5KT2TZDvobRot9GvUCM8VtBoKyDoE2LpihUdJUSC2hnq7fPuj3 | 5JkFRF4eCbYTbQ74K8MDpqZiexiBEuyPvhNkg7vS3f9VDXXFzvj |
-| sprods3 | 同步节点|GAL5JP2xyiZ4J8JuVprYr7VV5d7V3GhozusDUqJgJSW1sMZkmMMtS | 5JxDmiJfiAUjDtAfu5WRLyoTidmUQytFdWWFPLhQJkJH1xSR85T |
-| sprods4 | 同步节点|GAL6xs6kBVLpDfAn97yY9m3j5bZctousUHcgwijA6yD2UeLWjD1dY | 5Jwn7tQWwubHj3vNvAhn3dQH7zohhvpT9V81jbBsFVr2PaPCvwb |
+<img src="node.png" style="zoom:100%">
 
 **galaxy的组网**
-|节点 | http-server-address | p2p-listen-endpoint  | p2p-server-address | p2p-peer-address |
-|-|------------------- | ---------------------| ------------------ | ---------------- |
-| 创世节点(galaxy) | 8001 | 9001 | 9001 |
-| 生产节点(aprods1)|8002|9002|9002|9001 |
-| 生产节点(aprods2)|8003|9003|9003|9001 9002 |
-| 生产节点(aprods3)|8004|9004|9004|9001 9002 9003 |
-| 生产节点(aprods4)|8005|9005|9005|9001 9002 9003 9004 |
-| 生产节点(aprods5)|8006|9006|9006|9001 9002 9003 9004 9005 |
-| 生产节点(sprods1)|8007|9007|9007|9001 9002 9003 9004 9005 9006|
-| 生产节点(sprods2)|8008|9008|9008|9001 9002 9003 9004 9005 9006 9007 |
-| 同步节点(sprods3)|8009|9009|9009|9001 9002 9003 9004 9005 9006 9007 9008 |
-| 同步节点(sprods4)|8010|9010|9010|9001 9002 9003 9004 9005 9006 9007 9008 9009 |
+<img src="networks.png" style="zoom:100%">
 
 #### 2.2加载镜像 
 将docker的镜像包galaxy_image.tar.gz，上传到linux系统固定的目录下，通过如下命令将docker镜像导入到环境中
@@ -67,19 +41,7 @@ docker run --name job1 -v /root/galaxy/data/job1:/root/data/job1 -v /root/galaxy
 <img src="galaxy.png" style="zoom:100%">
 
 参数说明
-| 参数   | 说明                                 |
-| ------ | ------------------------------------------ |
-|job1 |docker的容器名称 |
-|/root/galaxy/data/job1| node数据映射到docker容器外部的路径，用户可以指定自己环境的实际路径|
-|/root/data/job1| docker容器内部保存node数据的路径|
-|/root/galaxy/data/logs| 合约数据映射到docker容器外部的路径，用户可以指定自己环境的实际路径|
-|/root/data/logs| docker容器内部保存合约数据的路径|
-|8001:8001| docker端口映射将内部8001端口映射到外部8001端口|
-|9001:9001| docker端口映射将内部8001端口映射到外部8001端口|
-|10.0.0.2| docker分配的内部IP地址|
-|gal_net| docker分配的网络名称|
-|galaxy:1.0.1|docker运行使用的镜像|
-|/root/startscript/start_nodgal1.sh|docker启动加载的启动脚本|
+<img src="params_node.png" style="zoom:100%">
 
 **启动aprods1节点**
 ```CQL
@@ -190,16 +152,7 @@ docker run \
 
 
 参数说明
-| 参数   | 说明                                 |
-| ------ | ------------------------------------------ |
-|kgald |docker的容器名称 |
-|/root/galaxy/data/galaxy-wallet| 钱包数据映射到docker容器外部的路径，用户可以指定自己环境的实际路径|
-|/root/galaxy-wallet| docker容器内部保存钱包数据的路径|
-|8900:8900| docker端口映射将内部8900端口映射到外部8900端口|
-|10.0.0.24| docker分配的内部IP地址|
-|gal_net| docker分配的网络名称|
-|galaxy:1.0.1|docker运行使用的镜像|
-|/root/kgald/kgald|docker启动加载的启动命令|
+<img src="params_kgald.png" style="zoom:100%">
 
 ##### 2.3.3 命令行配置
 
@@ -208,6 +161,7 @@ docker run \
 docker exec job1 /root/clgal/clgal --wallet-url http://10.0.0.24:8900 --url http://10.0.0.2:8001 wallet create --to-console
 ```
 <img src="create_wallet.png" style="zoom:100%">
+
 从图中可以看到生成的钱包密码为<font color=red>PW5JmTUrrQHrSfm1eUBYgFFShnjngKFdEJWWeeViGAFQhqmwxpzWi</font>，密码钥妥善保管，以便后续解锁钱包使用，如果钱包密码丢失，不能找回。
 
 将节点的公私钥导入钱包
@@ -228,14 +182,23 @@ docker exec job1 /root/clgal/clgal --wallet-url http://10.0.0.24:8900 --url http
 创建系统账户
 系统用户的名称及其作用如下说明：
 **galaxy.bpay**:矿工获取出块奖励的临时代管账户，增发GAL的1%的25%会先转到这个账户；
+
 **galaxy.msig**:多重签名管理的账户；
+
 **galaxy.names**:靓号账户拍卖管理的账户；
+
 **galaxy.ram**:内存买卖管理的账户；
+
 **galaxy.rfee**:内存买卖收取手续费的账户，按照每笔交易千分之5的费率收取手续费；
+
 **galaxy.save**:增发galaxy临时存放账户，增发总量5%，其中80%放在此账户，另外20%再分成25%和75%galaxy.bpay和galaxy.vpay；
+
 **galaxy.stake**:cpu、net买卖管理的账户；
+
 **galaxy.token**:发行和管理token的账户；
+
 **galaxy.vpay**:矿工按照获得投票多少比例获取奖励的临时代管账户，增发GAL的1%的75%会先转到这个账户；
+
 **galaxy.bwfee**:收取卖出cpu、net资源手续费账户；
 
 ```CQL
@@ -269,6 +232,7 @@ docker exec job1 /root/clgal/clgal --wallet-url http://10.0.0.24:8900 --url http
 docker exec job1 /root/clgal/clgal --wallet-url http://10.0.0.24:8900 --url http://10.0.0.2:8001 push action galaxy.token create '["galaxy", "100000000.0000 SYS"]' -p galaxy.token
 ```
 <img src="token_create.png" style="zoom:100%">
+
 ```CQL
 docker exec job1 /root/clgal/clgal --wallet-url http://10.0.0.24:8900 --url http://10.0.0.2:8001 push action galaxy.token issue '["galaxy", "90000000.0000 SYS", "memo"]' -p galaxy
 ```
@@ -321,6 +285,7 @@ aprods1账户中token达到1500万后进行投票后galaxy会停止出块，主�
 docker exec job1 /root/clgal/clgal --wallet-url http://10.0.0.24:8900 --url http://10.0.0.2:8001 push action galaxy.token transfer '["galaxy","aprods1","20000000.0000 SYS","vote"]' -p galaxy@active
 ```
 <img src="vote_trans.png" style="zoom:100%">
+
 ```CQL
 docker exec job1 /root/clgal/clgal --wallet-url http://10.0.0.24:8900 --url http://10.0.0.2:8001 system voteproducer prods aprods1 aprods1 aprods2 aprods3 aprods4 aprods5 sprods1 sprods2 -p aprods1@active
 ```
