@@ -1,2 +1,10 @@
-#### 说明
-&emsp;&emsp;galaxy公链的测试版本发布了，针对galaxy公链操作，我们写了galaxy区块链多节点与单节点的部署流程，对于文档中提供的镜像文件与部署脚本，请关注后续更新。
+## 星河公链致力于打造一条真正可以商业落地的区块链公链
+
+
+官网 http://www.3heu.com/ 
+
+官方论坛 http://www.3heu.club:8008/
+
+51cto https://blog.51cto.com/14267585 
+
+新浪微博 https://weibo.com/7059045296/profile?topnav=1&wvr=6&is_all=1 
