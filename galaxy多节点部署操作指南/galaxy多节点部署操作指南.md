@@ -7,6 +7,7 @@
 &emsp;&emsp;galaxy的运行程序目前是在docker中运行的，因此要部署galaxy需要在环境中部署先安装docker，只有安装了docker才能部署galaxy，至于docker的安装请参考相关的安装说明。
 
 **galaxy的运行环境与最低版本要求**
+
 <img src="version.png" style="zoom:100%">
 
 **节点信息**
@@ -181,6 +182,7 @@ docker exec job1 /root/clgal/clgal --wallet-url http://10.0.0.24:8900 --url http
 
 创建系统账户
 系统用户的名称及其作用如下说明：
+
 **galaxy.bpay**:矿工获取出块奖励的临时代管账户，增发GAL的1%的25%会先转到这个账户；
 
 **galaxy.msig**:多重签名管理的账户；
@@ -311,6 +313,7 @@ docker logs -f job2 | grep --color=auto "Success to Save block"
 
 #### 2.4 一键式部署多节点
 &emsp;&emsp;由于手工部署步骤过多而且执行命令多，可能会将命令执行错误，因此这里将执行的命令整理成shell脚本，通过执行脚本实现多节点一键式部署。
+
 &emsp;&emsp;首先获取部署脚本deploy_galaxy.sh，将脚本传到需要部署的linux环境的固定目录下，执行命令部署多节点。
 ```CQL
 ./deploy_galaxy.sh
