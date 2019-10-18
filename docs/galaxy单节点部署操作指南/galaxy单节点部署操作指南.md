@@ -3,34 +3,34 @@
 &emsp;&emsp;galaxy公链发布了，写这篇文章主要目的是对galaxy公链的单节点部署与运行提供基本的操作指导，包括节点的部署、合约的加载与合约的执行等，使读者能够更好的了解galaxy的特点，熟悉galaxy相关操作。
 
 ### 申明
-&emsp;&emsp;文章中所有在linux下命令行操作都是以root用户进行运行的，请注意在命令操作过程需要谨慎，防止root用户操作不当引起系统故障
+- 本文的演示实例都是在ubuntu 18.04环境进行操作的.
+- 文章中所有在linux下命令行操作都是以root用户进行运行的，请注意在命令操作过程需要谨慎，防止root用户操作不当引起系统故障。 
+- 建议读者使用要求docker的最新版本，防止操作过程中docker版本过低引起运行故障。
 
 ### 2 节点的部署
 #### 2.1 部署前提
-&emsp;&emsp;galaxy的运行程序目前是在docker中运行的，因此要部署galaxy需要在环境中部署先安装docker，只有安装了docker才能部署galaxy，至于docker的安装请参考相关的安装说明。
-
 **galaxy的运行环境与最低版本要求**
 
 <img src="version.png" style="zoom:100%">
 
+&emsp;&emsp;galaxy的运行程序目前是在docker中运行的，因此要部署galaxy需要在环境中部署先安装docker
+以root用户登录ubuntu系统后台，执行如下命令查看docker是否安装。
+```CQL
+docker version
+```
+<img src="docker_version.png" style="zoom:100%">
+
+如果查不到docker版本信息，请使用下面命令进行安装，如果已经安装了docker则跳过该步骤
+```CQL
+apt install docker.io
+```
+<img src="docker_install.png" style="zoom:100%"> 
 
 **节点信息**
 <img src="nodeinfo.png" style="zoom:100%">
 
-
 #### 2.2 单节点部署
-**加载镜像**
-将docker的镜像包galaxy_image.tar.gz，上传到linux系统固定的目录下，通过如下命令将docker镜像导入到环境中
-```CQL
-docker load -i galaxy_image.tar.gz
-```
-<img src="docker_images.png" style="zoom:100%">
-
-创建docker网络名称为gal_net
-```CQL
-docker network create --driver bridge --subnet=10.0.0.0/24 --gateway 10.0.0.1 gal_net
-```
-<img src="create_net.png" style="zoom:100%">
+节点的部署是在galaxy镜像的基础上运行的，因此首先要获取galaxy的镜像，怎么获取galaxy的镜像请参考程序包中《galaxy镜像编译操作指南》。
 
 **启动node节点**
 ```CQL
