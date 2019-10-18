@@ -1,0 +1,70 @@
+{
+   "version": "galaxy::abi/1.0",
+   "types": [{
+      "new_type_name": "account_name",
+      "type": "name"
+   }],
+  "structs": [
+    {
+      "name": "settop",
+      "base": "",
+      "fields": [
+        {
+          "name": "owner",
+          "type": "account_name"
+        },
+        {
+          "name": "toper",
+          "type": "account_name"
+        }
+      ],
+      "payer": "owner"
+    },
+    {
+      "name": "gettop",
+      "base": "",
+      "fields": [
+        {
+          "name": "owner",
+          "type": "account_name"
+        }
+      ]
+    },
+    {
+      "name": "gettopx",
+      "base": "",
+      "fields": [
+        {
+          "name": "owner",
+          "type": "account_name"
+        }
+      ]
+    }
+  ],
+  "actions": [{
+      "name": "settop",
+      "type": "settop",
+      "ricardian_contract": "",
+      "ram_usage_min":"0",
+      "cpu_usage_min":"100",
+      "net_usage_min":"0"
+    },{
+      "name": "gettop",
+      "type": "gettop",
+      "ricardian_contract": "",
+      "ram_usage_min":"0",
+      "cpu_usage_min":"0",
+      "net_usage_min":"0"
+    }, {
+      "name": "gettopx",
+      "type": "gettopx",
+      "ricardian_contract": "",
+      "ram_usage_min":"0",
+      "cpu_usage_min":"0",
+      "net_usage_min":"0"
+    }
+
+  ],
+  "ricardian_clauses": [],
+  "abi_extensions": []
+}
